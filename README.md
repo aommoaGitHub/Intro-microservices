@@ -20,6 +20,7 @@ create **exampleservice** service and **myappdeployment** deployment
 
     $ kubectl get pods
 There are 5 replicas of **myappdeployment** (as set in `deploymet.yml`)
+
 NAME     |      READY |  STATUS   |          RESTARTS |  AGE<br>
 --- | --- | --- | --- | ---
 hello-world-858c579f6b-54lkv |  1/1 |    Running |  0  |        4m27s<br>
