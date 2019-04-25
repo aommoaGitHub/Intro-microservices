@@ -38,7 +38,7 @@ NAME | READY  | UP-TO-DATE  | AVAILABLE  | AGE
 hello-world |  5/5  |   5   |         5      |     9m54s
 
     $ minikube ip
-get ip address of kubernetes cluster such as 192.168.99.100 and go to http://192.168.99.100:30002/ (number of port are set in `deploymet.yml`)
+get ip address of kubernetes cluster such as 192.168.99.100 and go to `192.168.99.100:30001` (number of port are set in `deploymet.yml`)
 
 For change the number of replicas `Dashboard -> Deployments -> click : on the most right -> Scale` If it's increasing replicas, pods will be created. If it's decreasing, available pods will be terminated.
 
