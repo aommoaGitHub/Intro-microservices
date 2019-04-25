@@ -1,13 +1,14 @@
 # Introduction to Microservices, Docker, and Kubernetes
 Reference: https://www.youtube.com/watch?v=1xo-0gCVhTU
 
-## 1 Docker
+## 1) Docker
     $ docker run -p 3000:80 tutum/hello-world
 or
+
     $ docker run -d -p 3000:80 tutum/hello-world
 and then go to localhost:3000, you will see a web page hello world
 
-## 2 Kubernetes
+## 2) Kubernetes
     $ minikube start 
     $ kubectl get pods //No resources found.
     $ kubectl get deployments //No resources found.
@@ -43,5 +44,15 @@ For change the number of replicas `Dashboard -> Deployments -> click : on the mo
 Load-Blancing = balance number of clients of each pods (users access the same deployments)
 
 
-## 3 Containerize a Node App
+# Containerize a Node App
 Reference: https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
+
+1. install dependencies
+
+    $ npm i express --save
+
+2. create index.js, Dockerfile, and .dockerignore following the reference
+
+3. build container
+
+    $ docker build -t pwnimatorz/exampleapp:v1.0.0 .
