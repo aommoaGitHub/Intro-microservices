@@ -7,6 +7,8 @@ or
 
     $ docker run -d -p 3000:80 tutum/hello-world
 and then go to localhost:3000, you will see a web page hello world
+ 
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/2-go-helloworld.png)
 
 ## 2) Kubernetes
     $ minikube start 
@@ -14,6 +16,8 @@ and then go to localhost:3000, you will see a web page hello world
     $ kubectl get deployments //No resources found.
     $ minikube dashboard
 start **minikube** and show the k8s dashboard GUI
+
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/3-k8s-dashboard.png)
 
     $ kubectl create -f deployment.yml
 create **exampleservice** service and **myappdeployment** deployment
@@ -29,8 +33,6 @@ hello-world-858c579f6b-5tv7c |  1/1  | Running |  0   |       4m27s<br>
 hello-world-858c579f6b-9tjq5 |  1/1  | Running | 0  |      4m27s<br>
 hello-world-858c579f6b-b66qq |  1/1 |  Running  | 0     |     4m27s<br>
 
-
-
     $ kubectl get deployments
 
 NAME | READY  | UP-TO-DATE  | AVAILABLE  | AGE
@@ -41,6 +43,9 @@ hello-world |  5/5  |   5   |         5      |     9m54s
 get ip address of kubernetes cluster such as 192.168.99.100 and go to `192.168.99.100:30001` (number of port are set in `deploymet.yml`)
 
 For change the number of replicas `Dashboard -> Deployments -> click : on the most right -> Scale` If it's increasing replicas, pods will be created. If it's decreasing, available pods will be terminated.
+
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/5-scale-deployment1.png)
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/6-scale-deployment2.png)
 
 Load-Blancing = balance number of clients of each pods (users access the same deployments)
 
@@ -59,7 +64,10 @@ Reference: https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
     $ docker build -t vittunyuta/k8snodeapp:v1.0.0 .
     $ docker run -p 8081:8080 -d vittunyuta/k8snodeapp:v1.0.0
 
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/7-run-node-app-using-docker.png)
+
 4 ) push to docker hub (login docker first). In this case username is vittunyuta, repository name is k8snodeapp, and tagname is v1.0.0
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/8-create-repo.png)
 
     $ docker push <username>/<repo_name>:<tagname>
 
@@ -67,8 +75,12 @@ Reference: https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 
     $ kubectl create -f deployment-node-app.yml
 
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/10-create-nodeapp-deployment2.png)
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/11-create-nodeapp-deployment3.png)
+
 6 ) get ip address such as 192.168.99.100
 
     $ minikube ip
 
 7 ) go `192.168.99.100:30005`
+![alt text](https://github.com/aommoaGitHub/Intro-microservices/blob/master/screenshots/12-run-nodeapp-using-k8s.png)
