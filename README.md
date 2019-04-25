@@ -22,11 +22,11 @@ create **exampleservice** service and **myappdeployment** deployment
 There are 5 replicas of **myappdeployment** (as set in `deploymet.yml`)
 NAME     |      READY |  STATUS   |          RESTARTS |  AGE<br>
 --- | --- | --- | --- | ---
-myappdeployment-65665fbfcd-9zkfl |  1/1 |    ImagePullBackOff |  0  |        4m27s<br>
-myappdeployment-65665fbfcd-fpzzq  | 1/1  |   ImagePullBackOff  | 0  |        4m27s<br>
-myappdeployment-65665fbfcd-kg976 |  1/1  |   ImagePullBackOff |  0   |       4m27s<br>
-myappdeployment-65665fbfcd-m6zj8 |  1/1  |   ImagePullBackOff  | 0  |      4m27s<br>
-myappdeployment-65665fbfcd-s6krp |  1/1 |    ImagePullBackOff  | 0     |     4m27s<br>
+hello-world-858c579f6b-54lkv |  1/1 |    Running |  0  |        4m27s<br>
+hello-world-858c579f6b-5lnwz  | 1/1  | Running  | 0  |        4m27s<br>
+hello-world-858c579f6b-5tv7c |  1/1  | Running |  0   |       4m27s<br>
+hello-world-858c579f6b-9tjq5 |  1/1  | Running | 0  |      4m27s<br>
+hello-world-858c579f6b-b66qq |  1/1 |  Running  | 0     |     4m27s<br>
 
 
 
@@ -34,10 +34,10 @@ myappdeployment-65665fbfcd-s6krp |  1/1 |    ImagePullBackOff  | 0     |     4m2
 
 NAME | READY  | UP-TO-DATE  | AVAILABLE  | AGE
 ---- | ---- | ---- | --- | ---
-myappdeployment |  5/5  |   5   |         5      |     9m54s
+hello-world |  5/5  |   5   |         5      |     9m54s
 
     $ minikube ip
-get ip address of k8s cluster such as 192.168.99.100 and go to http://192.168.99.100:30002/ (number of port are set in `deploymet.yml`)
+get ip address of kubernetes cluster such as 192.168.99.100 and go to http://192.168.99.100:30002/ (number of port are set in `deploymet.yml`)
 
 For change the number of replicas `Dashboard -> Deployments -> click : on the most right -> Scale` If it's increasing replicas, pods will be created. If it's decreasing, available pods will be terminated.
 
@@ -47,12 +47,27 @@ Load-Blancing = balance number of clients of each pods (users access the same de
 # Containerize a Node App
 Reference: https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 
-1. install dependencies
+1 ) install dependencies
 
     $ npm i express --save
 
-2. create index.js, Dockerfile, and .dockerignore following the reference
+2 ) create deployment-node-app.yml, index.js, Dockerfile, and .dockerignore following the reference
 
-3. build container
+3 ) build and run container
 
-    $ docker build -t pwnimatorz/exampleapp:v1.0.0 .
+    $ docker build -t vittunyuta/k8snodeapp:v1.0.0 .
+    $ docker run -p 8081:8080 -d vittunyuta/k8snodeapp:v1.0.0
+
+4 ) push to docker hub (login docker first). In this case username is vittunyuta, repository name is k8snodeapp, and tagname is v1.0.0
+
+    $ docker push <username>/<repo_name>:<tagname>
+
+5 ) create a deployment and pods on kubernetes
+
+    $ kubectl create -f deployment-node-app.yml
+
+6 ) get ip address such as 192.168.99.100
+
+    $ minikube ip
+
+7 ) go `192.168.99.100:30005`

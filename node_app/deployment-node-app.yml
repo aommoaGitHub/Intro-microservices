@@ -2,18 +2,18 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: helloworldservice
+  name: k8snodeappservice
 spec: #specification
   selector:
-    app: hello-world
+    app: k8snodeapp
   ports:
     - protocol: "TCP"
       # Port accessible inside cluster
-      port: 8080
+      port: 8081
       # Port to forward to inside the pod
-      targetPort: 80
+      targetPort: 8080
       # Port accessible outside cluster
-      nodePort: 30001
+      nodePort: 30005
   type: LoadBalancer
  
  
@@ -22,16 +22,16 @@ spec: #specification
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: k8snodeappdeployment
 spec:
   replicas: 5
   template:
     metadata:
       labels:
-        app: hello-world
+        app: k8snodeapp
     spec:
       containers:
-        - name: hello-world
-          image: tutum/hello-world
+        - name: k8snodeapp
+          image: vittunyuta/k8snodeapp:v1.0.0
           ports:
-            - containerPort: 80
+            - containerPort: 8080
